@@ -47,24 +47,31 @@ module.exports = (eleventyConfig, configOptions = {}) => {
 
         options.prefix = (overrideOptions && overrideOptions.prefix) ? `${overrideOptions.prefix}-epg` : options.prefix
 
-        const postMap = {
-            years: {},
-            counts: {},
-        }
-        for (let post of postsCollection) {
-            const postDate = post.data.date
-            const postYear = moment(postDate).year()
-            const dateIndexKey = `${postYear}-${moment(postDate).dayOfYear()}`
-            if (!postMap.years[postYear]) {
-                postMap.years[postYear] = { 
-                    offset: moment(postDate).startOf('year').isoWeekday() - 1,
-                    days: ((postYear % 4 === 0 && postYear % 100 > 0) || postYear % 400 == 0) ? 366 : 365
+        let postmap = {}
+
+        if (options.data)
+        {
+            postMap = options.data
+        } else {
+            postMap = {
+                years: {},
+                counts: {},
+            }
+            for (let post of postsCollection) {
+                const postDate = post.data.date
+                const postYear = moment(postDate).year()
+                const dateIndexKey = `${postYear}-${moment(postDate).dayOfYear()}`
+                if (!postMap.years[postYear]) {
+                    postMap.years[postYear] = { 
+                        offset: moment(postDate).startOf('year').isoWeekday() - 1,
+                        days: ((postYear % 4 === 0 && postYear % 100 > 0) || postYear % 400 == 0) ? 366 : 365
+                    }
                 }
+                if (!postMap.counts[dateIndexKey]) {
+                    postMap.counts[dateIndexKey] = 0
+                }
+                postMap.counts[dateIndexKey]++
             }
-            if (!postMap.counts[dateIndexKey]) {
-                postMap.counts[dateIndexKey] = 0
-            }
-            postMap.counts[dateIndexKey]++
         }
 
         const prefix = options.prefix

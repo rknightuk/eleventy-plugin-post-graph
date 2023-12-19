@@ -190,7 +190,9 @@ The full CSS:
 }
 ```
 
-## Multiple graphs with different styles on one page
+## Advanced Usage
+
+### Multiple graphs with different styles on one page
 
 If you try to render two graphs on one page, the second graph's CSS will override the first so they both look the same. To get around this, you can pass in a `prefix`:
 
@@ -205,3 +207,33 @@ Classnames and variables will be `pinkone-epg` instead of `epg` on the second on
 {% postGraph collections.posts %}
 
 {% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}
+
+### Custom Data
+
+"_I have an unusual 11ty setup and I can't just pass in a collection, please help?_".
+
+Good news! You can pass in your own data and the plugin will use that instead. The format of the data should have an object with years as keys, and each year should have an object with days and offset.
+
+The counts object has a key which is the year plus the _day of the year_ and the number of posts.
+
+```js
+const data = {
+    years: {
+        2023: {
+            days: 365,
+            offset: 6
+        },
+    },
+    counts: {
+        '2023-1': 1,
+        '2023-5': 3,
+        // and so on
+    },
+}
+```
+
+Pass `null` as the collection, and pass your `data` to the plugin:
+
+```js
+{% raw %}{% postGraph null, { "data": myDataObject } %}{% endraw %}
+```
