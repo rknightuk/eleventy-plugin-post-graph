@@ -35,22 +35,6 @@ You can also override the config by passing in the options directly:
 {% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94" } %}{% endraw %}
 ```
 
-## Multiple graphs with different styles on one page
-
-If you try to render two graphs on one page, the second graph's CSS will override the first so they both look the same. To get around this, you can pass in a `prefix`:
-
-```js
-{% raw %}{% postGraph collections.posts %}{% endraw %}
-
-{% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}{% endraw %}
-```
-
-Classnames and variables will be `pinkone-epg` instead of `epg` on the second one:
-
-{% postGraph collections.posts %}
-
-{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}
-
 ## Customisation
 
 _Any of these options can be passed in directly to the shortcode, or set in the config._
@@ -205,3 +189,19 @@ The full CSS:
     background: var(--epg-box-highlight);
 }
 ```
+
+## Multiple graphs with different styles on one page
+
+If you try to render two graphs on one page, the second graph's CSS will override the first so they both look the same. To get around this, you can pass in a `prefix`:
+
+```js
+{% raw %}{% postGraph collections.posts %}{% endraw %}
+
+{% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}{% endraw %}
+```
+
+Classnames and variables will be `pinkone-epg` instead of `epg` on the second one:
+
+{% postGraph collections.posts %}
+
+{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}
