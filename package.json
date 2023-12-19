@@ -1,0 +1,31 @@
+{
+  "name": "@rknightuk/eleventy-plugin-post-graph",
+  "version": "1.0.0",
+  "description": "Generate Github-style post distribution graph for your blog posts in Eleventy",
+  "main": ".eleventy.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "11ty",
+    "11ty-plugin",
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": "Robb Knight (https://rknight.me)",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rknightuk/eleventy-plugin-post-graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rknightuk/eleventy-plugin-post-graph/issues"
+  },
+  "homepage": "https://github.com/rknightuk/eleventy-plugin-post-graph#readme"
+}

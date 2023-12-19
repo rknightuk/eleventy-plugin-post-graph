@@ -1,0 +1,6 @@
+demo/node_modules
+demo/_site
+demo/package-lock.json
+
+node_modules
+package-lock.json

@@ -1,0 +1,207 @@
+---
+layout: base
+templateEngineOverride: njk,html,md
+---
+
+{% postGraph collections.posts %}
+
+## Usage
+
+Install the package
+
+```bash
+npm install @rknightuk/eleventy-plugin-post-graph --save-dev
+```
+
+In your Eleventy config:
+
+```js
+const postGraph = require('@rknightuk/eleventy-plugin-post-graph')
+
+module.exports = (eleventyConfig, options = {}) => {
+    eleventyConfig.addPlugin(postGraph)
+}
+```
+
+In your template, use the shortcode and pass it your posts collection:
+
+```njk
+{% raw %}{% postGraph collections.posts %}{% endraw %}
+```
+
+You can also override the config by passing in the options directly:
+
+```js
+{% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94" } %}{% endraw %}
+```
+
+## Multiple graphs with different styles on one page
+
+If you try to render two graphs on one page, the second graph's CSS will override the first so they both look the same. To get around this, you can pass in a `prefix`:
+
+```js
+{% raw %}{% postGraph collections.posts %}{% endraw %}
+
+{% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}{% endraw %}
+```
+
+Classnames and variables will be `pinkone-epg` instead of `epg` on the second one:
+
+{% postGraph collections.posts %}
+
+{% postGraph collections.posts, { "highlightColor": "#e33d94", "prefix": "pinkone" } %}
+
+## Customisation
+
+_Any of these options can be passed in directly to the shortcode, or set in the config._
+
+### Light and Dark Mode
+
+By default, the plugin uses `:root/@media (prefers-color-scheme: dark)` to handle themes, but if you want use a class instead, you can pass in selectors for light and dark mode:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    darkModeSelector: '.dark',
+    lightModeSelector: '.light',
+})
+```
+
+### Colors
+
+You can customise box, highlight, and text colors for both light and dark mode:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    boxColorLight: '#e9ecef',
+    highlightColorLight: '#69db7c',
+    textColorLight: '#000',
+
+    boxColorDark: '#2d333b',
+    highlightColorDark: '#69db7c',
+    textColorDark: '#fff',
+})
+```
+
+If you want the same colors for both modes, you can pass any of the following and these will override the light/dark options:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    boxColor: '#2d333b',
+    highlightColor: '#e33d94',
+    textColor: '#fff',
+})
+```
+
+This plugin uses standard CSS (no css-in-js-on-the-blockchain here) so you can also pass CSS variables:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    boxColor: 'var(--background)',
+    highlightColor: 'var(--primary)',
+    textColor: 'var(--text)',
+})
+```
+
+
+### Only include specific years
+
+_If this is left empty, it will show all years_.
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    only: [2022],
+})
+```
+
+### Sorting
+
+Pass `sort` to set the order (default: `asc`):
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    sort: 'desc',
+})
+```
+
+### Hide labels
+
+Hide the year and month labels:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    noLabels: true,
+})
+```
+
+### Customise styles
+
+Pass in `noStyles: true` to do all the styling yourself. Note: If you have a CSP that blocks inline css, you will need to include the styles yourself.
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    noStyles: true,
+})
+```
+
+The full CSS:
+
+```css
+:root {
+    --epg-box: #e9ecef;
+    --epg-box-highlight: #69db7c;
+    --epg-text: #000;
+}
+
+@media (prefers-color-scheme: dark) { 
+    :root {
+        --epg-box: #2d333b;
+        --epg-box-highlight: #69db7c;
+        --epg-text: #fff;
+    }
+}
+
+.epg {
+    color: var(--text);
+    margin: 20px 0;
+    font-size: 0.8em;
+}
+
+.epg__year {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.epg__months {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 410px) {
+    .epg__months {
+        display: none;
+    }
+}
+
+.epg__squares {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    margin-bottom: 10px;
+    grid-gap: 2px;
+}
+
+.epg__box {
+    aspect-ratio: 1 / 1;
+    background: var(--epg-box);
+}
+
+.epg__box--empty {
+    background: none;
+}
+
+.epg__hasPost {
+    background: var(--epg-box-highlight);
+}
+```
