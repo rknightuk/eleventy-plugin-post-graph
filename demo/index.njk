@@ -35,6 +35,8 @@ You can also override the config by passing in the options directly:
 {% raw %}{% postGraph collections.posts, { "highlightColor": "#e33d94" } %}{% endraw %}
 ```
 
+Note: The plugin looks for either `post.data.date` (from the frontmatter) or `post.date` (automatically from the file itself) to get the date of the post.
+
 ## Plugin in Use
 
 - [Statistics • Robb Knight](https://rknight.me/blog/stats/)
