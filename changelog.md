@@ -1,3 +1,7 @@
+[1.0.3]
+
+- Another fix for rendering when on a markdown page
+
 [1.0.2]
 
 - Fixed issue with rendering when including in a markdown page

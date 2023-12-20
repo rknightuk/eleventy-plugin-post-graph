@@ -76,8 +76,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
 
         const prefix = options.prefix
 
-        const styleSheet = `
-<style>
+        const styleSheet = `<style>
     ${options.selectorLight} {
         --${prefix}-box: ${options.boxColor || options.boxColorLight};
         --${prefix}-box-highlight: ${options.highlightColor || options.highlightColorLight};
@@ -144,9 +143,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
     `}
 </style>`
 
-        return `${options.noStyles ? '' : styleSheet}
-        
-        ${getYears(postMap.years).map((year) => {
+        return `${options.noStyles ? '' : styleSheet}${getYears(postMap.years).map((year) => {
             return `<div class="${prefix}" style="color: var(--text);
         margin: 20px 0;">
                 <div class="${prefix}__year">${ year }</div>
