@@ -105,6 +105,14 @@ eleventyConfig.addPlugin(postGraph, {
 })
 ```
 
+### Limit to a certain amount of years
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    limit: 2, // only show 2 years worth of posts
+})
+```
+
 ### Sorting
 
 Pass `sort` to set the order (default: `asc`):

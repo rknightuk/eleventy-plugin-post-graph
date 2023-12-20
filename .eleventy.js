@@ -4,6 +4,7 @@ const makeOptions = (options) => {
     return {
         sort: options.sort || 'asc',
         only: options.only || null,
+        limit: options.limit || null,
         noStyles: options.noStyles || false,
         prefix: options.prefix ? `${options.prefix}-epg` : 'epg',
         noLabels: options.noLabels || false,
@@ -35,7 +36,13 @@ module.exports = (eleventyConfig, configOptions = {}) => {
             keys  = keys.filter((year) => options.only.includes(parseInt(year)))
         }
 
-        return options.sort === 'desc' ? keys.reverse() : keys
+        keys = options.sort === 'desc' ? keys.reverse() : keys
+
+        if (options.limit && options.limit > 0) {
+            keys = keys.slice(0, options.limit)
+        }
+
+        return keys
     }
 
     eleventyConfig.addShortcode('postGraph', (postsCollection, overrideOptions) => {
