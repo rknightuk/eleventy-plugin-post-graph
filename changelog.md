@@ -1,3 +1,7 @@
+[1.0.4]
+
+- Add `limit` option
+
 [1.0.3]
 
 - Another fix for rendering when on a markdown page
