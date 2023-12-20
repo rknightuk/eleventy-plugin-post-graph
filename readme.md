@@ -1,5 +1,7 @@
 # eleventy-plugin-post-graph
 
+[![npm](https://img.shields.io/npm/v/@rknightuk/eleventy-plugin-post-graph)](https://www.npmjs.com/package/@rknightuk/eleventy-plugin-post-graph)
+
 Generate Github-style post distribution graph for your blog posts in Eleventy
 
 ![](screenshot.png)
