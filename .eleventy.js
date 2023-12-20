@@ -58,7 +58,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                 counts: {},
             }
             for (let post of postsCollection) {
-                const postDate = post.data.date
+                const postDate = post.data.date || post.date
                 const postYear = moment(postDate).year()
                 const dateIndexKey = `${postYear}-${moment(postDate).dayOfYear()}`
                 if (!postMap.years[postYear]) {
@@ -164,13 +164,11 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                     <div>Nov</div>
                     <div>Dec</div>
                 </div>
-                <div class="${prefix}__squares">
-                ${
+                <div class="${prefix}__squares">${
                     Array.from({ length: postMap.years[year].offset }).map((_, index) => {
                         return `<div class="${prefix}__box ${prefix}__box--empty"></div>`
                     }).join('')
-                }
-                ${
+                }${
                     Array.from({ length: postMap.years[year].days }).map((_, index) => {
                         const dateIndexKey = `${year}-${index + 1}`
                         const postCount = postMap.counts[dateIndexKey] || 0
