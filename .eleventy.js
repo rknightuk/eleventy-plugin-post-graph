@@ -54,7 +54,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
 
         options.prefix = (overrideOptions && overrideOptions.prefix) ? `${overrideOptions.prefix}-epg` : options.prefix
 
-        let postmap = {}
+        let postMap = {}
 
         if (options.data)
         {
