@@ -65,7 +65,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                 counts: {},
             }
             for (let post of postsCollection) {
-                const postDate = post.data.date || post.date
+                const postDate = post.date || post.data.date
                 const postYear = moment(postDate).year()
                 const dateIndexKey = `${postYear}-${moment(postDate).dayOfYear()}`
                 if (!postMap.years[postYear]) {
