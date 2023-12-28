@@ -1,3 +1,7 @@
+[1.0.5]
+
+- Switch date logic so it works where the collection items has no `data`
+
 [1.0.4]
 
 - Add `limit` option
