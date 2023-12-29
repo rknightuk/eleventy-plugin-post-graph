@@ -8,6 +8,7 @@ const makeOptions = (options) => {
         noStyles: options.noStyles || false,
         prefix: options.prefix ? `${options.prefix}-epg` : 'epg',
         noLabels: options.noLabels || false,
+        yearLink: options.yearLink || null,
         
         selectorLight: options.selectorLight || ':root',
         selectorDark: options.selectorDark || null,
@@ -24,6 +25,11 @@ const makeOptions = (options) => {
         highlightColorDark: options.highlightColorDark || '#69db7c',
         textColorDark: options.textColorDark || '#fff',
     }
+}
+
+const makeYearLink = (yearLink, year) => {
+    if (!yearLink) return year
+    return `<a href="${yearLink.replace('{{year}}', year)}">${year}</a>`
 }
 
 module.exports = (eleventyConfig, configOptions = {}) => {
@@ -151,10 +157,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
 </style>`
 
         return `${options.noStyles ? '' : styleSheet}${getYears(postMap.years).map((year) => {
-            return `<div class="${prefix}" style="color: var(--text);
-        margin: 20px 0;">
-                <div class="${prefix}__year">${ year }</div>
-                <div class="${prefix}__months">
+            return `<div class="${prefix}"><div class="${prefix}__year">${makeYearLink(options.yearLink, year)}</div><div class="${prefix}__months">
                     <div>Jan</div>
                     <div>Feb</div>
                     <div>Mar</div>
@@ -167,8 +170,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                     <div>Oct</div>
                     <div>Nov</div>
                     <div>Dec</div>
-                </div>
-                <div class="${prefix}__squares">${
+                </div><div class="${prefix}__squares">${
                     Array.from({ length: postMap.years[year].offset }).map((_, index) => {
                         return `<div class="${prefix}__box ${prefix}__box--empty"></div>`
                     }).join('')
@@ -179,8 +181,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                         return `<div class="${prefix}__box ${ postCount > 0 ? `${prefix}__hasPost` : '' }"></div>`
                     }).join('')
                 }
-                </div>
-            </div>`
+                </div></div>`
         }).join('')}`
     })
 }

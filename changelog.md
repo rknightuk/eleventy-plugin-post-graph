@@ -1,3 +1,7 @@
+[1.0.6]
+
+- Added option to pass in a link for years
+
 [1.0.5]
 
 - Switch date logic so it works where the collection items has no `data`

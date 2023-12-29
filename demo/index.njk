@@ -94,6 +94,15 @@ eleventyConfig.addPlugin(postGraph, {
 })
 ```
 
+### Link to years
+
+By default, the year labels are not links. If you want to link to a page with all the posts for that year, you can pass in `yearLink` and `{% raw %}{{year}}{% endraw %}`  will be replaced with the year:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    yearLink: '/posts/{% raw %}{{year}}{% endraw %}',
+})
+```
 
 ### Only include specific years
 

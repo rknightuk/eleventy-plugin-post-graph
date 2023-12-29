@@ -1,6 +1,6 @@
 {
   "name": "@rknightuk/eleventy-plugin-post-graph",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate Github-style post distribution graph for your blog posts in Eleventy",
   "main": ".eleventy.js",
   "scripts": {
