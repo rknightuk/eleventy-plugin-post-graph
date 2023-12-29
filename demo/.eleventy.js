@@ -12,6 +12,5 @@ module.exports = (eleventyConfig, options = {}) => {
     
     eleventyConfig.addPlugin(postGraph, {
         selectorDark: '.dark',
-        yearLink: '/posts/{{year}}',
     })
 }
