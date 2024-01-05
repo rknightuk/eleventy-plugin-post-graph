@@ -1,3 +1,7 @@
+[1.0.7]
+
+- Fixed issue with `false` showing up when it shouldn't
+
 [1.0.6]
 
 - Added option to pass in a link for years

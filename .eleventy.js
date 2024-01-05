@@ -151,9 +151,9 @@ module.exports = (eleventyConfig, configOptions = {}) => {
         background: var(--${prefix}-box-highlight);
     }
 
-    ${options.noLabels && `
+    ${options.noLabels ? `
         .${prefix}__year, .${prefix}__months { display: none; }
-    `}
+    ` : ''}
 </style>`
 
         return `${options.noStyles ? '' : styleSheet}${getYears(postMap.years).map((year) => {
