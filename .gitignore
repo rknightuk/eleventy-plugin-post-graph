@@ -1,6 +1,7 @@
 demo/node_modules
 demo/_site
 demo/package-lock.json
+demo/.cache
 
 node_modules
 package-lock.json

@@ -43,6 +43,17 @@
         </header>
 
         <main>
+            {% if dependents.length > 0 %}
+                <details>
+                    <summary>Used by {{ dependents.length }} people</summary>
+                    <ul>
+                        {% for d in dependents %}
+                            <li><a href="{{ d.link }}"><code>{{ d.name }}</code></a></li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            {% endif %}
+            
             <dark-mode-toggle 
                 dark="Light Mode"
                 light="Dark Mode"
