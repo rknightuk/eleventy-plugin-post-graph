@@ -123,6 +123,16 @@ module.exports = (eleventyConfig, configOptions = {}) => {
         margin-bottom: 10px;
     }
 
+    @media print {
+        .${prefix}__box {
+            box-shadow: inset 0 0 0 1000px var(--${prefix}-box);
+        }
+
+        .${prefix}__hasPost {
+            box-shadow: inset 0 0 0 1000px var(--${prefix}-box-highlight);
+        }
+    }
+
     @media (max-width: 410px) {
         .${prefix}__months {
             display: none;
