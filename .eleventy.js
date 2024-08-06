@@ -180,7 +180,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                     Array.from({ length: postMap.years[year].days }).map((_, index) => {
                         const dateIndexKey = `${year}-${index + 1}`
                         const postCount = postMap.counts[dateIndexKey] || 0
-                        return `<div class="${prefix}__box ${ postCount > 0 ? `${prefix}__hasPost` : '' }" title="${ options.dayBoxTitle && postCount > 0 ? `${moment().year(year).dayOfYear(index + 1).format(options.dayBoxTitleFormat)}` : ''}"></div>`
+                        return `<div class="${prefix}__box ${ postCount > 0 ? `${prefix}__hasPost` : '' }" ${ options.dayBoxTitle && postCount > 0 ? `title="${moment().year(year).dayOfYear(index + 1).format(options.dayBoxTitleFormat)}"` : ''}></div>`
                     }).join('')
                 }
                 </div></div>`
