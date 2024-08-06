@@ -9,6 +9,8 @@ const makeOptions = (options) => {
         prefix: options.prefix ? `${options.prefix}-epg` : 'epg',
         noLabels: options.noLabels || false,
         yearLink: options.yearLink || null,
+        dayBoxTitle: options.dayBoxTitle || false,
+        dayBoxTitleFormat: options.dayBoxTitleFormat || 'MMM D, YYYY',
         
         selectorLight: options.selectorLight || ':root',
         selectorDark: options.selectorDark || null,
@@ -178,7 +180,7 @@ module.exports = (eleventyConfig, configOptions = {}) => {
                     Array.from({ length: postMap.years[year].days }).map((_, index) => {
                         const dateIndexKey = `${year}-${index + 1}`
                         const postCount = postMap.counts[dateIndexKey] || 0
-                        return `<div class="${prefix}__box ${ postCount > 0 ? `${prefix}__hasPost` : '' }" title="${ postCount > 0 ? `${moment().year(year).dayOfYear(index + 1).format('MMM D, YYYY')}` : ''}"></div>`
+                        return `<div class="${prefix}__box ${ postCount > 0 ? `${prefix}__hasPost` : '' }" title="${ options.dayBoxTitle && postCount > 0 ? `${moment().year(year).dayOfYear(index + 1).format(options.dayBoxTitleFormat)}` : ''}"></div>`
                     }).join('')
                 }
                 </div></div>`

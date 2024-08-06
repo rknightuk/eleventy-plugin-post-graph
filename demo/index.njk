@@ -136,6 +136,17 @@ eleventyConfig.addPlugin(postGraph, {
 })
 ```
 
+### Show dates on highlighted box hover
+
+Adds a `title` element to each highlighted box with the date of the post. The default display is `Aug 6, 2024`, but this can be updated using <a href="https://momentjs.com/docs/#/displaying/" target="_blank">Moment's formatting options</a>:
+
+```js
+eleventyConfig.addPlugin(postGraph, {
+    dayBoxTitle: true,
+    dayBoxTitleFormat: 'MMM D, YYYY',
+})
+```
+
 ### Customise styles
 
 Pass in `noStyles: true` to do all the styling yourself. Note: If you have a CSP that blocks inline css, you will need to include the styles yourself.
