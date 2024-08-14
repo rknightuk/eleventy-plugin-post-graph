@@ -1,3 +1,7 @@
+[1.0.8]
+
+- Added date to boxes on highlight/hover
+ 
 [1.0.7]
 
 - Fixed issue with `false` showing up when it shouldn't
